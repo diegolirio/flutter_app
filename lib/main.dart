@@ -32,76 +32,104 @@ class ProductForm extends StatelessWidget {
         appBar: AppBar(title: Text("Register your Product")),
         body: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                controller: this._nameTextEditingController,
-                style: TextStyle(
-                  fontSize: 24,
-                ),
-                decoration: InputDecoration(
-                  labelText: "Name",
-                  hintText: "Ex: IPhone XS"
-                ),
-              ),
+            Edit(
+              controller: _nameTextEditingController,
+              label: "Name",
+              hint: "Ex: IPhone Xs",
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                controller: _priceTextEditingController,
-                style: TextStyle(
-                  fontSize: 24,
-                ),
-                decoration: InputDecoration(
-                    icon: Icon(Icons.monetization_on),
-                    labelText: "Price",
-                    hintText: "Ex: 9.99"
-                ),
-                keyboardType: TextInputType.number,
-              ),
+            Edit(
+              controller: _priceTextEditingController,
+              label: "Price",
+              hint: "9,99",
+              icon: Icons.monetization_on,
+              textInputType: TextInputType.number,
             ),
             RaisedButton(
               child: Text('Confirmar'),
-              onPressed: () {
-                String name = _nameTextEditingController.text;
-                double price = double.tryParse(_priceTextEditingController.text);
-                if(price == null || name == "") {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: new Text("Name and price are invalid"),
-                          //content: new Text("Alert Dialog body"),
-                          actions: <Widget>[
-                            // usually buttons at the bottom of the dialog
-                            new FlatButton(
-                              child: new Text("Close"),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      }
-                    );
-
-                }
-                Product(name, price);
-              },
+              onPressed: () => this._saveProduct(context),
             )
           ],
         ),
     );
   }
 
+  _saveProduct(context) {
+    String name = _nameTextEditingController.text;
+    double price = double.tryParse(_priceTextEditingController.text);
+    if(price == null || name == "") {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text("Name and price are invalid"),
+              //content: new Text("Alert Dialog body"),
+              actions: <Widget>[
+                // usually buttons at the bottom of the dialog
+                new FlatButton(
+                  child: new Text("Close"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          }
+      );
+      return;
+    }
+    final product = Product(name, price);
+    debugPrint('$product');
+  }
+
 }
+
+class Edit extends StatelessWidget {
+
+  final TextEditingController controller;
+  final String label;
+  final String hint;
+  final IconData icon;
+  final TextInputType textInputType;
+
+  Edit({this.controller, this.label, this.hint, this.icon, this.textInputType});
+
+  @override
+  Widget build(BuildContext context) {
+    return             Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: TextField(
+        controller: this.controller,
+        style: TextStyle(
+          fontSize: 24,
+        ),
+        decoration: InputDecoration(
+            labelText: this.label,
+            hintText: this.hint,
+            icon: this.icon != null ? Icon(this.icon) : null,
+        ),
+        keyboardType: this.textInputType,
+      ),
+    );
+  }
+}
+
 
 class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: <Widget>[
+        ProductItem(Product("Iphone X", 3000.99)),
+        ProductItem(Product("Notebook", 59000.99)),
+        ProductItem(Product("Iphone X", 3000.99)),
+        ProductItem(Product("Notebook", 59000.99)),
+        ProductItem(Product("Iphone X", 3000.99)),
+        ProductItem(Product("Notebook", 59000.99)),
+        ProductItem(Product("Iphone X", 3000.99)),
+        ProductItem(Product("Notebook", 59000.99)),
+        ProductItem(Product("Iphone X", 3000.99)),
+        ProductItem(Product("Notebook", 59000.99)),
         ProductItem(Product("Iphone X", 3000.99)),
         ProductItem(Product("Notebook", 59000.99)),
       ],
@@ -133,5 +161,11 @@ class Product {
   final double _price;
 
   Product(this._name, this._price);
+
+  @override
+  String toString() {
+    return 'Product{_name: $_name, _price: $_price}';
+  }
+
 
 }
