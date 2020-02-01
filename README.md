@@ -17,12 +17,12 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Install 
 Na documentação do site do fluuter https://flutter.dev/docs/get-started/install 
-baixe o zip `fluuter_linux_v1***.tar.xz` e extraia em sua pasta de intalação:   
+baixe o zip `fluuter_linux_v1***.tar.xz` você pode usar o tar para extrair em sua pasta de intalação:
 ```
 tar xf ~/Downloads/flutter_linux_v1.9.1+hotfix.2-stable.tar.xz
 ```
 
-Adicione flutter a var de ambiente.
+Adicione flutter na var PATH de ambiente.
 ` export PATH="$PATH:`pwd`/flutter/bin"`
 
 Baixar binarios necessarios para o flutter:
@@ -43,14 +43,14 @@ https://flutter.dev/docs/get-started/editor
 https://developer.android.com/studio/run/managing-avds#createavd
 
 
-## Creating app
+## Creating my first app
 
 ```bash
-flutter create mybank
+flutter create my_first_app
 ```
 
 ```bash
-cd mybank
+cd my_first_app
 flutter run
 ```
 Output ---> No supported devices connected.   
@@ -94,3 +94,5 @@ Criando um app pela doc do flutter.: https://flutter.dev/docs/get-started/test-d
 
 ## Escrevendo seu primeiro App   
 https://flutter.dev/docs/get-started/codelab
+
+
