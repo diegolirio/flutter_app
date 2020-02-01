@@ -1,12 +1,54 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(home: ProductApp()));
+void main() => runApp(ProductApp());
 
 class ProductApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+//    return Scaffold(
+//      body: ProductList(),
+//      appBar: AppBar(
+//        title: Text("Products"),
+//      ),
+//      floatingActionButton: FloatingActionButton(
+//        child: Icon(Icons.add),
+//        onPressed: () {
+//          final Future<Product> future =
+//              Navigator.push(context, MaterialPageRoute(builder: (context) {
+//            return ProductForm();
+//          }));
+//          future.then((productRegistered) {
+//            debugPrint("=======================");
+//            debugPrint("$productRegistered");
+//          });
+//        },
+//      ),
+//    );
+      return MaterialApp(home: Scaffold(body: ProductList(),));
+  }
+}
+
+class ProductList extends StatefulWidget {
+
+  final List<Product> _products = List();
+
+  @override
+  State<StatefulWidget> createState() {
+    return ProductListState();
+  }
+}
+
+class ProductListState extends State<ProductList> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: ProductList(),
+      body: ListView.builder(
+          itemCount: widget._products.length,
+          itemBuilder: (context, index) {
+            final product = widget._products[index];
+            return ProductItem(product);
+          }
+      ),
       appBar: AppBar(
         title: Text("Products"),
       ),
@@ -14,24 +56,51 @@ class ProductApp extends StatelessWidget {
         child: Icon(Icons.add),
         onPressed: () {
           final Future<Product> future =
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
             return ProductForm();
           }));
           future.then((productRegistered) {
-            debugPrint("=======================");
-            debugPrint("$productRegistered");
+            widget._products.add(productRegistered);
           });
         },
       ),
-    );
+    );;
+  }
+
+}
+
+class ProductItem extends StatelessWidget {
+  final Product _product;
+
+  ProductItem(this._product);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+        child: ListTile(
+      leading: Icon(Icons.monetization_on),
+      title: Text(this._product._name),
+      subtitle: Text(this._product._price.toString()),
+    ));
+  }
+}
+
+class Product {
+  final String _name;
+  final double _price;
+
+  Product(this._name, this._price);
+
+  @override
+  String toString() {
+    return 'Product{_name: $_name, _price: $_price}';
   }
 }
 
 class ProductForm extends StatelessWidget {
-  final TextEditingController _nameTextEditingController =
-      TextEditingController();
-  final TextEditingController _priceTextEditingController =
-      TextEditingController();
+
+  final TextEditingController _nameTextEditingController = TextEditingController();
+  final TextEditingController _priceTextEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -114,50 +183,5 @@ class Edit extends StatelessWidget {
         keyboardType: this.textInputType,
       ),
     );
-  }
-}
-
-class ProductList extends StatelessWidget {
-
-  final List<Product> _products = List();
-
-  @override
-  Widget build(BuildContext context) {
-
-    return ListView.builder(
-        itemCount: _products.length,
-        itemBuilder: (context, index) {
-            final product = _products[index];
-            return ProductItem(product);
-        }
-    );
-  }
-}
-
-class ProductItem extends StatelessWidget {
-  final Product _product;
-
-  ProductItem(this._product);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-        child: ListTile(
-      leading: Icon(Icons.monetization_on),
-      title: Text(this._product._name),
-      subtitle: Text(this._product._price.toString()),
-    ));
-  }
-}
-
-class Product {
-  final String _name;
-  final double _price;
-
-  Product(this._name, this._price);
-
-  @override
-  String toString() {
-    return 'Product{_name: $_name, _price: $_price}';
   }
 }
