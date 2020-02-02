@@ -92,7 +92,13 @@ flutter run
 
 Criando um app pela doc do flutter.: https://flutter.dev/docs/get-started/test-drive   
 
-## Escrevendo seu primeiro App   
+## App
+
+Ref.:
+
 https://flutter.dev/docs/get-started/codelab
+https://material.io/resources/
+https://material.io/design/color/the-color-system.html#tools-for-picking-colors
+
 
 
