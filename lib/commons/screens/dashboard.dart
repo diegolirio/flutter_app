@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/product/screens/list.dart';
 
 class Dashboard extends StatelessWidget {
   
@@ -15,21 +16,35 @@ class Dashboard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                  padding: const EdgeInsets.all(8.0),
-                  height: 100,
-                  width: 150,
+              child: GestureDetector(
+                child: Material(
                   color: Theme.of(context).accentColor,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Icon(Icons.category, color: Colors.white, size: 24), 
-                      Text('Products', style: TextStyle(color: Colors.white, fontSize: 16),),
-                  ])
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ProductList(),
+                        ), 
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      height: 100,
+                      width: 150,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Icon(Icons.category, color: Colors.white, size: 24), 
+                          Text('Products', style: TextStyle(color: Colors.white, fontSize: 16),),
+                        ],
+                      ),
+                    ),
+                  ),
               ),
             ),
-        ]
+          )
+        ],
       ),
     );
   }
