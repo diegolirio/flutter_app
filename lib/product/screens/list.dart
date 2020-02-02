@@ -21,7 +21,7 @@ class ProductListState extends State<ProductList> {
           itemCount: widget._products.length,
           itemBuilder: (context, index) {
             final product = widget._products[index];
-            return ProductItem(product);
+            return ProductItem(product: product);
           }
       ),
       appBar: AppBar(
@@ -50,17 +50,17 @@ class ProductListState extends State<ProductList> {
 }
 
 class ProductItem extends StatelessWidget {
-  final Product _product;
+  final Product product;
 
-  ProductItem(this._product);
+  ProductItem({this.product});
 
   @override
   Widget build(BuildContext context) {
     return Card(
         child: ListTile(
           leading: Icon(Icons.monetization_on),
-          title: Text(this._product.name),
-          subtitle: Text(this._product.price.toString()),
+          title: Text(this.product.name),
+          subtitle: Text(this.product.price.toString()),
         ));
   }
 }
