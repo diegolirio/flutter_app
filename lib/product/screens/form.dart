@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/edit.dart';
+import 'package:flutter_app/commons/components/edit.dart';
 import 'package:flutter_app/product/models/product.dart';
 
 class ProductForm extends StatefulWidget {
