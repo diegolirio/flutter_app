@@ -26,7 +26,7 @@ class ProductFormState extends State<ProductForm> {
             Edit(
               controller: widget._nameTextEditingController,
               label: "Name",
-              hint: "Ex: IPhone Xs",
+              hint: "Ex: iPhone Xs",
             ),
             Edit(
               controller: widget._priceTextEditingController,
