@@ -68,7 +68,7 @@ class ProductFormState extends State<ProductForm> {
           });
       return;
     }
-    final product = Product(name, price);
+    final product = Product(0, name, price);
     Navigator.pop(context, product);
   }
 
