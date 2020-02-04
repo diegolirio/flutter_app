@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/product/screens/list.dart';
+import 'package:flutter_app/commons/screens/dashboard.dart';
 
-void main() => runApp(ProductApp());
+void main() {
+  runApp(ProductApp());
+} 
 
 class ProductApp extends StatelessWidget {
   @override
@@ -16,6 +18,6 @@ class ProductApp extends StatelessWidget {
             textTheme: ButtonTextTheme.primary,
           ),
         ),
-        home: Scaffold(body: ProductList()));
+        home: Scaffold(body: Dashboard()));
   }
 }

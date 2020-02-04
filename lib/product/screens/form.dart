@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/edit.dart';
+import 'package:flutter_app/commons/components/edit.dart';
+import 'package:flutter_app/product/dao/product_dao.dart';
 import 'package:flutter_app/product/models/product.dart';
 
 class ProductForm extends StatefulWidget {
 
   final TextEditingController _nameTextEditingController = TextEditingController();
   final TextEditingController _priceTextEditingController = TextEditingController();
-
+  
   @override
   State<StatefulWidget> createState() {
     return ProductFormState();
@@ -15,6 +16,8 @@ class ProductForm extends StatefulWidget {
 }
 
 class ProductFormState extends State<ProductForm> {
+
+final ProductDao _dao = ProductDao();
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +52,15 @@ class ProductFormState extends State<ProductForm> {
     String name = widget._nameTextEditingController.text;
     double price = double.tryParse(widget._priceTextEditingController.text);
     if (price == null || name == "") {
+      showAlert();
+      return;
+    }
+    final product = Product(0, name, price);
+    //Navigator.pop(context, product);
+    this._dao.save(product).then((id) => Navigator.pop(context));
+  }
+
+  showAlert() {
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -66,10 +78,6 @@ class ProductFormState extends State<ProductForm> {
               ],
             );
           });
-      return;
-    }
-    final product = Product(name, price);
-    Navigator.pop(context, product);
   }
 
 }

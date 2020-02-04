@@ -94,7 +94,7 @@ flutter run
 
 ## App
 
-![](doc/flutter-screens.png)
+![](images/purchase-order.png)
 
 ### Code Organization
 
@@ -103,14 +103,20 @@ flutter run
 ├── flutter-app
          └── lib
               ├── main.dart
-              ├── components
-              │      └── edit.dart
+              ├── commons
+              │       ├── components
+              │       │       └── edit.dart
+              │       └── screens
+              │               └── dashboard.dart
+              ├── database
+              │       └── app_database.dart
               │
               └── product
-                     ├── modules
-                     │      └── product.dart
-                     │
-                     ├── screens
+                     ├── dao
+                     │     └── product_dao.dart
+                     ├── models
+                     │     └── product.dart
+                     └── screens
                            ├── form.dart
                            └── list.dart
 
@@ -124,6 +130,7 @@ https://material.io/resources/
 https://material.io/design/color/the-color-system.html#tools-for-picking-colors
 https://medium.com/flutter-community/flutter-code-organization-de3a4c219149
 https://cursos.alura.com.br/formacao-flutter
+https://flutter.dev/docs/cookbook/persistence/sqlite
 
 
 
