@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/database/app_database.dart';
+import 'package:flutter_app/product/dao/product_dao.dart';
 import 'package:flutter_app/product/models/product.dart';
 import 'package:flutter_app/product/screens/form.dart';
 
@@ -15,6 +15,9 @@ class ProductList extends StatefulWidget {
 }
 
 class ProductListState extends State<ProductList> {
+
+  final ProductDao _dao = ProductDao();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,17 +28,38 @@ class ProductListState extends State<ProductList> {
       //       return ProductItem(product: product);
       //     }
       // ),
-      body: FutureBuilder(
-        future: findAll(),
+      body: FutureBuilder<List<Product>>(
+        initialData: List(),
+        //future: findAll(),
+        future: Future.delayed(Duration(seconds: 1)).then((value) => this._dao.findAll()),
         builder: (context, snapshot) {
-          final List<Product> products = snapshot.data;
-          return ListView.builder(
-            itemCount: products.length,
-            itemBuilder: (context, index) {
-                final product = products[index];
-                return ProductItem(product: product);
-            }
-          );
+          switch(snapshot.connectionState) {
+              case ConnectionState.none: break;
+              case ConnectionState.waiting:
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      CircularProgressIndicator(),
+                      Text('Loading'),
+                    ],
+                  ),
+                );            
+                break;  
+              case ConnectionState.active: break;
+              case ConnectionState.done:
+                final List<Product> products = snapshot.data;
+                return ListView.builder(
+                  itemCount: products.length,
+                  itemBuilder: (context, index) {
+                      final product = products[index];
+                      return ProductItem(product: product); 
+                  }
+                );            
+                break;            
+          }
+          return Text('Unkown error');
         },
       ),
       appBar: AppBar(
@@ -44,19 +68,18 @@ class ProductListState extends State<ProductList> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          final Future<Product> future =
+          //final Future<Product> future = 
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return ProductForm();
           }));
-          future.then((productRegistered) {
-
+          
+          //future.then((productRegistered) {
             // Future.delayed(Duration(seconds: 1), () { // TESTE
-
-            if(productRegistered != null) {
+          //  if(productRegistered != null) {
               // setState(() => widget._products.add(productRegistered));
-              setState(() => debugPrint(productRegistered.toString()));
-            }
-          });
+          //    setState(() => debugPrint(productRegistered.toString()));
+          //  }
+          //});
         },
       ),
     );
