@@ -124,13 +124,15 @@ flutter run
 
 Ref.:
 
-https://flutter.dev/docs/get-started/test-drive   
-https://flutter.dev/docs/get-started/codelab
-https://material.io/resources/
+https://flutter.dev/docs/get-started/test-drive
+https://flutter.dev/docs/get-started/codelab   
+https://material.io/resources/   
 https://material.io/design/color/the-color-system.html#tools-for-picking-colors
 https://medium.com/flutter-community/flutter-code-organization-de3a4c219149
 https://cursos.alura.com.br/formacao-flutter
 https://flutter.dev/docs/cookbook/persistence/sqlite
+
+
 
 
 
