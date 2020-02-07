@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/customer/screens/list.dart';
 import 'package:flutter_app/product/screens/list.dart';
 
 class Dashboard extends StatelessWidget {
@@ -16,7 +17,7 @@ class Dashboard extends StatelessWidget {
           Row(
             children: <Widget>[
               _FeatureItem('Products', Icons.category, onClick: () => this._showProductList(context),),
-              _FeatureItem('Customers', Icons.supervised_user_circle, onClick: () => debugPrint("Show Customer List"),),
+              _FeatureItem('Customers', Icons.supervised_user_circle, onClick: () => this._showCustomerList(context),),
             ],
           ),
         ],
@@ -28,6 +29,14 @@ class Dashboard extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ProductList(),
+      ),
+    );
+  }
+
+  void _showCustomerList(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => CustomerList(),
       ),
     );
   }
