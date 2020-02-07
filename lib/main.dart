@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/commons/screens/dashboard.dart';
+import 'package:flutter_app/customer/http/customer_http.json.dart';
 
 void main() {
   runApp(ProductApp());
+  CustomerHttp().findAll();
 } 
 
 class ProductApp extends StatelessWidget {
