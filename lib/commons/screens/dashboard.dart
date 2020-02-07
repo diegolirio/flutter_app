@@ -15,22 +15,33 @@ class Dashboard extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              _FeatureItem('Products', Icons.category),
-              _FeatureItem('Customers', Icons.supervised_user_circle),
+              _FeatureItem('Products', Icons.category, onClick: () => this._showProductList(context),),
+              _FeatureItem('Customers', Icons.supervised_user_circle, onClick: () => debugPrint("Show Customer List"),),
             ],
           ),
         ],
       ),
     );
   }
+
+  void _showProductList(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ProductList(),
+      ),
+    );
+  }
+
+
 }
 
 class _FeatureItem extends StatelessWidget {
 
   final String _name;
   final IconData _icon;
+  final Function onClick;
 
-  _FeatureItem(this._name, this._icon);
+  _FeatureItem(this._name, this._icon, {@required this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +51,7 @@ class _FeatureItem extends StatelessWidget {
         child: Material(
           color: Theme.of(context).accentColor,
           child: InkWell(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => ProductList(),
-                ),
-              );
-            },
+            onTap: () => this.onClick(),
             child: Container(
               padding: const EdgeInsets.all(8.0),
               height: 100,
