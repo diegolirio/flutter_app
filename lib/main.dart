@@ -4,7 +4,9 @@ import 'package:flutter_app/customer/http/customer_http.json.dart';
 
 void main() {
   runApp(ProductApp());
-  CustomerHttp().findAll();
+  //CustomerHttp()
+  //    .findAll()
+  //    .then((customers) => print('new customers $customers'));
 } 
 
 class ProductApp extends StatelessWidget {
