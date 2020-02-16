@@ -44,7 +44,7 @@ https://developer.android.com/studio/run/managing-avds#createavd
 ## Creating my first app
 
 ```bash
-flutter create flutter_app
+flutter create --org com.example --template=plugin flutter_app
 ```
 
 ```bash
@@ -130,7 +130,7 @@ https://material.io/resources/
 https://material.io/design/color/the-color-system.html#tools-for-picking-colors
 https://medium.com/flutter-community/flutter-code-organization-de3a4c219149
 https://cursos.alura.com.br/formacao-flutter
-https://flutter.dev/docs/cookbook/persistence/sqlite
+https://flutter.dev/docs/cookbook/persistence/sqlite   
 https://pub.dev/packages/http
 
 
