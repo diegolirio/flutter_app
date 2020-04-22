@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/commons/components/mapPage.dart';
 import 'package:flutter_app/customer/screens/list.dart';
 import 'package:flutter_app/product/screens/list.dart';
 
@@ -16,8 +17,25 @@ class Dashboard extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              _FeatureItem('Products', Icons.category, onClick: () => this._showProductList(context),),
-              _FeatureItem('Customers', Icons.supervised_user_circle, onClick: () => this._showCustomerList(context),),
+              _FeatureItem(
+                'Mapa',
+                Icons.map,
+                onClick: () => this._showMapa(context),
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              _FeatureItem(
+                'Products',
+                Icons.category,
+                onClick: () => this._showProductList(context),
+              ),
+              _FeatureItem(
+                'Customers',
+                Icons.supervised_user_circle,
+                onClick: () => this._showCustomerList(context),
+              ),
             ],
           ),
         ],
@@ -33,6 +51,14 @@ class Dashboard extends StatelessWidget {
     );
   }
 
+  void _showMapa(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => MapPage(),
+      ),
+    );
+  }
+
   void _showCustomerList(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -40,12 +66,9 @@ class Dashboard extends StatelessWidget {
       ),
     );
   }
-
-
 }
 
 class _FeatureItem extends StatelessWidget {
-
   final String _name;
   final IconData _icon;
   final Function onClick;

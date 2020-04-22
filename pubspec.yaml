@@ -19,6 +19,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  google_maps_flutter: ^0.5.26+2
+  permission: ^0.1.7
+  permission_handler:
   sqflite:
   path:
   http:
